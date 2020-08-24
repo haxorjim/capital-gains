@@ -42,7 +42,8 @@ def process_sells(open_lots, sells):
 
     for closing_lot in closing_lots:
       # Gains can be closed immediately, but check losses for wash sales
-      if closing_lot.gain < 0:
+      wash_sales_disabled = True
+      if not wash_sales_disabled and closing_lot.gain < 0:
         remaining_shares = closing_lot.shares
         remaining_loss = abs(closing_lot.gain)
 
